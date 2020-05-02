@@ -60,22 +60,22 @@ bool pageSaver(webpage_t* page, char * dirname, const int id);
 `main` leverages all the other modules to give the crawler its functionality.
 The basic working of `main` is as follows:
 
-Parse and validate command line arguments
+1. Parse and validate command line arguments
 
-Initialize the `bag` and `hashtable` structs th described above
+2. Initialize the `bag` and `hashtable` structs th described above
 
-Make a new `webpage` with the `seedURL` as the URL, depth of 0, and `NULL` html
+3. Make a new `webpage` with the `seedURL` as the URL, depth of 0, and `NULL` html
 
-Insert the `webpage` into the `bag` and `hashtable`
+4. Insert the `webpage` into the `bag` and `hashtable`
 
-while the `bag` contains a `webpage` to be crawled
+5. while the `bag` contains a `webpage` to be crawled
 
-    retrieve HTML from URL and store it in `webpage->html` (`pageFetcher`)
+    1. retrieve HTML from URL and store it in `webpage->html` (`pageFetcher`)
 
-    save the webpage to a file (`pageSaver`)
+    2. save the webpage to a file (`pageSaver`)
 
-    if the depth of the current webpage is less than `maxDepth`
+    3. if the depth of the current webpage is less than `maxDepth`
 
-        extract all embedded URLs and process them (`pageScanner`)
+        1. extract all embedded URLs and process them (`pageScanner`)
 
-        delete `bag` and `hashtable`
+6. delete `bag` and `hashtable`
