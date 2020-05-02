@@ -1,0 +1,184 @@
+bash -v testing.sh
+switchml () {  typeset swfound=1;
+ if [ "${MODULES_USE_COMPAT_VERSION:-0}" = '1' ]; then
+ typeset swname='main';
+ if [ -e /usr/share/Modules/libexec/modulecmd.tcl ]; then
+ typeset swfound=0;
+ unset MODULES_USE_COMPAT_VERSION;
+ fi;
+ else
+ typeset swname='compatibility';
+ if [ -e /usr/share/Modules/libexec/modulecmd-compat ]; then
+ typeset swfound=0;
+ MODULES_USE_COMPAT_VERSION=1;
+ export MODULES_USE_COMPAT_VERSION;
+ fi;
+ fi;
+ if [ $swfound -eq 0 ]; then
+ echo "Switching to Modules $swname version";
+ source /usr/share/Modules/init/bash;
+ else
+ echo "Cannot switch to Modules $swname version, command not found";
+ return 1;
+ fi
+}
+module () {  unset _mlshdbg;
+ if [ "${MODULES_SILENT_SHELL_DEBUG:-0}" = '1' ]; then
+ case "$-" in 
+ *v*x*)
+ set +vx;
+ _mlshdbg='vx'
+ ;;
+ *v*)
+ set +v;
+ _mlshdbg='v'
+ ;;
+ *x*)
+ set +x;
+ _mlshdbg='x'
+ ;;
+ *)
+ _mlshdbg=''
+ ;;
+ esac;
+ fi;
+ unset _mlre _mlIFS;
+ if [ -n "${IFS+x}" ]; then
+ _mlIFS=$IFS;
+ fi;
+ IFS=' ';
+ for _mlv in ${MODULES_RUN_QUARANTINE:-};
+ do
+ if [ "${_mlv}" = "${_mlv##*[!A-Za-z0-9_]}" -a "${_mlv}" = "${_mlv#[0-9]}" ]; then
+ if [ -n "`eval 'echo ${'$_mlv'+x}'`" ]; then
+ _mlre="${_mlre:-}${_mlv}_modquar='`eval 'echo ${'$_mlv'}'`' ";
+ fi;
+ _mlrv="MODULES_RUNENV_${_mlv}";
+ _mlre="${_mlre:-}${_mlv}='`eval 'echo ${'$_mlrv':-}'`' ";
+ fi;
+ done;
+ if [ -n "${_mlre:-}" ]; then
+ eval `eval ${_mlre}/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash '"$@"'`;
+ else
+ eval `/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash "$@"`;
+ fi;
+ _mlstatus=$?;
+ if [ -n "${_mlIFS+x}" ]; then
+ IFS=$_mlIFS;
+ else
+ unset IFS;
+ fi;
+ unset _mlre _mlv _mlrv _mlIFS;
+ if [ -n "${_mlshdbg:-}" ]; then
+ set -$_mlshdbg;
+ fi;
+ unset _mlshdbg;
+ return $_mlstatus
+}
+#!/bin/bash
+
+# testing.sh - testing the tse crawler module
+
+# Compiling common
+cd ../common
+make clean
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+rm -f core
+rm -f common.a *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+make
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o pagedir.o pagedir.c
+ar cr common.a pagedir.o ../libcs50/libcs50-given.a
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+
+# Compiling crawler
+cd -
+/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler
+make clean
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler'
+rm -f core *core.*
+rm -f crawler *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler'
+make
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler'
+gcc -Wall -pedantic -std=c11 -ggdb -I ../common -I ../libcs50   -c -o crawler.o crawler.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../common -I ../libcs50 crawler.o ../libcs50/libcs50-given.a ../common/common.a -o crawler
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler'
+
+# Variables
+testURL=http://old-www.cs.dartmouth.edu/~cs50/index.html
+externalURL=www.google.com
+out=output  # name of directory
+
+# make the directory and test subdirectory
+mkdir $out
+mkdir $out/test
+
+# 1 argument
+./crawler
+Invalid number of arguments.
+
+# 2 arguments
+./crawler $testURL  
+Invalid number of arguments.
+
+# 3 arguments
+./crawler $testURL $out/test 
+Invalid number of arguments.
+
+# 4 arguments + externalURL
+./crawler $externalURL $out/test 2 
+Invalid seedURL.
+
+# non existent server
+./crawler http://old-www.cs.dartmouth.gov $out 0
+Invalid seedURL.
+
+# non existent page
+./crawler $testURL/index $out/test 2 
+
+# cross-linked webpage - letters
+testURL=http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
+depth=0
+
+while [ $depth -lt 7 ]
+do 
+    dir=letters-depth-$depth
+
+    # make directory to store output files
+    mkdir $out/$dir
+    ./crawler $testURL $out/$dir $depth
+
+    # count the number of files made
+    x=$(ls $out/$dir | wc -l)
+    y=$(ls ../tse-output/$dir | wc -l)
+    echo $x, $y
+    ((depth++))
+done
+1, 1
+2, 2
+3, 3
+6, 6
+8, 8
+9, 9
+9, 9
+
+# different seedURl
+testURL=http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/D.html
+./crawler $testURL $out/test 2
+
+
+# wikipedia playground
+testURL=http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/
+depth=0
+
+while [ $depth -lt 3 ]
+do
+    dir=wikipedia-depth-$depth
+    # make direcrory to store output files
+    mkdir $out/$dir
+    ./crawler $testURL $out/$dir $depth
+    ((depth++))
+done
+testing.sh: line 77: 2024280 Segmentation fault      (core dumped) ./crawler $testURL $out/$dir $depth
