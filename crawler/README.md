@@ -16,15 +16,17 @@ To test, type `make test`.
 `crawler seedURL pageDirectory maxDepth`
 
 where:
-    * `seedURL` is used as the initial URL (must be an internal URL)
-    * `pageDirectory` is the pathname for an existing directory in which to write downloaded webpages
-    * `maxDepth` is a non-negative integer representing the maximum crawl depth
+
+* `seedURL` is used as the initial URL (must be an internal URL)
+* `pageDirectory` is the pathname for an existing directory in which to write downloaded webpages
+* `maxDepth` is a non-negative integer representing the maximum crawl depth
 
 output:
-    * writes each explored page to the `pageDirectory` with a unique document ID, wherein the document id starts at 1 and increments * by 1 for each new page
-    * the first line of the file is the URL
-    * the second line of the file is the depth
-    * the rest of the file is the page content (the HTML, unchanged)
+
+* writes each explored page to the `pageDirectory` with a unique document ID, wherein the document id starts at 1 and increments * by 1 for each new page
+* the first line of the file is the URL
+* the second line of the file is the depth
+* the rest of the file is the page content (the HTML, unchanged)
 
 ### Exit status
 

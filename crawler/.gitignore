@@ -2,5 +2,5 @@ output
 crawler
 *.o
 core
-DESIGN.md
-REQUIREMENTS.md
+DESIGN*
+REQUIREMENTS*
