@@ -23,3 +23,4 @@ test:
 clean:
 	rm -f core *core.*
 	rm -f $(PROG) *~ *.o
+

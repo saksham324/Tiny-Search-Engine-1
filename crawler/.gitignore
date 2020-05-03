@@ -2,5 +2,4 @@ output
 crawler
 *.o
 core
-DESIGN*
-REQUIREMENTS*
+.nfs*

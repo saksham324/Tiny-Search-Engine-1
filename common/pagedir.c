@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "webpage.h"
+#include "memory.h"
 
 // function prototypes
 bool isValidDirectory(char * dirname);
@@ -12,21 +13,22 @@ bool pageSaver(webpage_t* page, char * dirname, const int id);
 // checks if the given directory is valid by writing a file called .crawler into the directory
 bool isValidDirectory(char * dirname)
 {
-    char * filename; // the name of the file (.crawler or ./crawler depending on the formatting)
-
+    // the name of the file (.crawler or ./crawler depending on the formatting)
+    char filename[11 + strlen(dirname)];
+    strcpy(filename, dirname);
+    char *ext;
     // user can give directory as either dirname/ or dirname
     if (dirname[strlen(dirname) - 1] != '/'){
-        filename = "/.crawler";
+        ext = "/.crawler";
+        strcat(filename, ext);
     }
     else {
-        filename = ".crawler";
+        ext = ".crawler";
+        strcat(filename, ext);
     } 
 
-    // concatenating the dirname and filename into an absolute path
-    strcat(dirname, filename);
-
     // opening the file
-    FILE * fp = fopen(dirname, "w");
+    FILE * fp = fopen(filename, "w");
 
     // if a valid fp is returned, the directory is valid.
     if (fp == NULL){
@@ -34,17 +36,19 @@ bool isValidDirectory(char * dirname)
         return false;
     }
     else {
+        fclose(fp);
         return true;
     }
 }
 
-// saves a page in the directory specified by dirname with a fie name of id
-bool pageSaver(webpage_t* page, char * filename, const int id)
+// saves a page in the directory specified by dirname with a file name of id
+bool pageSaver(webpage_t* page, char * dirname, const int id)
 {
     bool status; // have we successfully saved the page?
-
+    char filename[strlen(dirname) + 5];
+    strcpy(filename, dirname);
     // if the filename does not end with a '/', concatenate it
-    if (filename[strlen(filename) - 1] != '/') {
+    if (dirname[strlen(dirname) - 1] != '/') {
         strcat(filename, "/");
     }
 
@@ -68,8 +72,8 @@ bool pageSaver(webpage_t* page, char * filename, const int id)
         fprintf(fp, "\n");
         fprintf(fp, "%d\n", webpage_getDepth(page));
         fprintf(fp, webpage_getHTML(page));
+        fclose(fp);
         status = true;
     }
-    return status;
-    
+    return status;   
 }

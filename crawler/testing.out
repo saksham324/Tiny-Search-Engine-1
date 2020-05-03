@@ -113,11 +113,13 @@ out=output  # name of directory
 
 # make the directory and test subdirectory
 mkdir $out
+mkdir: cannot create directory ‘output’: File exists
 mkdir $out/test
+mkdir: cannot create directory ‘output/test’: File exists
 
 # 1 argument
 ./crawler
-Invalid number of arguments.
+testing.sh: line 25: 2188733 Segmentation fault      (core dumped) ./crawler
 
 # 2 arguments
 ./crawler $testURL  
@@ -156,12 +158,19 @@ do
     echo $x, $y
     ((depth++))
 done
+mkdir: cannot create directory ‘output/letters-depth-0’: File exists
 1, 1
+mkdir: cannot create directory ‘output/letters-depth-1’: File exists
 2, 2
+mkdir: cannot create directory ‘output/letters-depth-2’: File exists
 3, 3
+mkdir: cannot create directory ‘output/letters-depth-3’: File exists
 6, 6
+mkdir: cannot create directory ‘output/letters-depth-4’: File exists
 8, 8
+mkdir: cannot create directory ‘output/letters-depth-5’: File exists
 9, 9
+mkdir: cannot create directory ‘output/letters-depth-6’: File exists
 9, 9
 
 # different seedURl
@@ -181,4 +190,23 @@ do
     ./crawler $testURL $out/$dir $depth
     ((depth++))
 done
-testing.sh: line 77: 2024280 Segmentation fault      (core dumped) ./crawler $testURL $out/$dir $depth
+mkdir: cannot create directory ‘output/wikipedia-depth-0’: File exists
+mkdir: cannot create directory ‘output/wikipedia-depth-1’: File exists
+mkdir: cannot create directory ‘output/wikipedia-depth-2’: File exists
+testing.sh: line 77: 2188965 Segmentation fault      (core dumped) ./crawler $testURL $out/$dir $depth
+
+# cleanup
+make clean
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler'
+rm -f core *core.*
+rm -f crawler *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler'
+cd -
+/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common
+make clean
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+rm -f core
+rm -f common.a *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+cd -
+/net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler

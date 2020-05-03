@@ -19,7 +19,7 @@ int main(const int argc, char *argv[])
 {
     // command-line arguments
     int maxDepth;
-    char * seedURL;
+    char *seedURL = assertp(count_malloc((strlen(argv[1]) + 1)*sizeof(char)), "seedURL");
     char pageDirectory[100];
     int id = 1;
 
@@ -38,8 +38,7 @@ int main(const int argc, char *argv[])
 
     // validating seedURL
     if (IsInternalURL(argv[1])) {
-        seedURL = assertp(count_malloc((strlen(argv[1]) + 1)*sizeof(char)), "seedURL");
-        seedURL = argv[1];
+        strcpy(seedURL, argv[1]);
     }
     else {
         fprintf(stderr, "Invalid seedURL.\n");
@@ -49,7 +48,6 @@ int main(const int argc, char *argv[])
     // validating directory
     strcpy(pageDirectory, argv[2]);
     if (! isValidDirectory(argv[2])) {
-        fprintf(stderr, "Invalid pageDirectory.\n");
         return 1;
     }
 
@@ -58,7 +56,7 @@ int main(const int argc, char *argv[])
 
     hashtable_t *seen = hashtable_new(500);  // hashtable of URLs that have been seen
 
-    webpage_t * page = webpage_new(seedURL, 0, NULL); // new webpage with seedURL as URL
+    webpage_t *page = webpage_new(seedURL, 0, NULL); // new webpage with seedURL as URL
 
     bag_insert(pagesToCrawl, page);  // insert new webpage into the bag
 
@@ -88,6 +86,7 @@ int main(const int argc, char *argv[])
             // extract all embedded URLs and process them
             pageScanner(webPage, seen, pagesToCrawl);
         }
+        webpage_delete(webPage);
     }
     bag_delete(pagesToCrawl, webpage_delete);   //delete bag
     hashtable_delete(seen, URLDelete);  // delete hashtable
@@ -105,12 +104,10 @@ bool pageFetcher(webpage_t *page){
 void pageScanner(webpage_t * page, hashtable_t *ht, bag_t *bag)
 {
     int pos = 0;
-    char *result;
+    char *result = webpage_getNextURL(page, &pos);
 
     // while there are more embedded URLS
-    while ((result = webpage_getNextURL(page, &pos)) != NULL) {
-
-        NormalizeURL(result); 
+    while (result != NULL) {
 
         if (IsInternalURL(result)){
             
@@ -119,6 +116,7 @@ void pageScanner(webpage_t * page, hashtable_t *ht, bag_t *bag)
                 bag_insert(bag, new);
             }
         }
+        result = webpage_getNextURL(page, &pos);
     }
 }
 

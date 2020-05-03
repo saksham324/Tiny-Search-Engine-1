@@ -1,6 +1,6 @@
 # Mark Gitau
 
-## CS50 Winter 2020, Tiny Search Engine
+## CS50 Spring 2020, Tiny Search Engine
 
 GitHub username: markgitau
 

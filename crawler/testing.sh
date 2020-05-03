@@ -75,3 +75,9 @@ do
     ./crawler $testURL $out/$dir $depth
     ((depth++))
 done
+
+# cleanup
+make clean
+cd -
+make clean
+cd -
