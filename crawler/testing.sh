@@ -49,12 +49,7 @@ do
 
     # make directory to store output files
     mkdir $out/$dir
-    ./crawler $testURL $out/$dir $depth
-
-    # count the number of files made
-    x=$(ls $out/$dir | wc -l)
-    y=$(ls ../tse-output/$dir | wc -l)
-    echo $x, $y
+    ./crawler $testURL $out/$dir $depth 
     ((depth++))
 done
 
