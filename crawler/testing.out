@@ -111,23 +111,27 @@ testURL=http://old-www.cs.dartmouth.edu/~cs50/index.html
 externalURL=www.google.com
 out=output  # name of directory
 
+# remove output directory if it exists
+if [ -d $out ]
+then
+    rm -rf $out/
+fi
+
 # make the directory and test subdirectory
 mkdir $out
-mkdir: cannot create directory ‘output’: File exists
 mkdir $out/test
-mkdir: cannot create directory ‘output/test’: File exists
 
 # 1 argument
 ./crawler
-testing.sh: line 25: 2188733 Segmentation fault      (core dumped) ./crawler
+usage: ./crawler seedURL pageDirectory maxDepth
 
 # 2 arguments
 ./crawler $testURL  
-Invalid number of arguments.
+usage: ./crawler seedURL pageDirectory maxDepth
 
 # 3 arguments
 ./crawler $testURL $out/test 
-Invalid number of arguments.
+usage: ./crawler seedURL pageDirectory maxDepth
 
 # 4 arguments + externalURL
 ./crawler $externalURL $out/test 2 
@@ -140,6 +144,10 @@ Invalid seedURL.
 # non existent page
 ./crawler $testURL/index $out/test 2 
 
+# negative maxDepth
+./crawler $testURL $out -7
+maxDepth has to be > 0.
+
 # cross-linked webpage - letters
 testURL=http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
 depth=0
@@ -150,28 +158,9 @@ do
 
     # make directory to store output files
     mkdir $out/$dir
-    ./crawler $testURL $out/$dir $depth
-
-    # count the number of files made
-    x=$(ls $out/$dir | wc -l)
-    y=$(ls ../tse-output/$dir | wc -l)
-    echo $x, $y
+    ./crawler $testURL $out/$dir $depth 
     ((depth++))
 done
-mkdir: cannot create directory ‘output/letters-depth-0’: File exists
-1, 1
-mkdir: cannot create directory ‘output/letters-depth-1’: File exists
-2, 2
-mkdir: cannot create directory ‘output/letters-depth-2’: File exists
-3, 3
-mkdir: cannot create directory ‘output/letters-depth-3’: File exists
-6, 6
-mkdir: cannot create directory ‘output/letters-depth-4’: File exists
-8, 8
-mkdir: cannot create directory ‘output/letters-depth-5’: File exists
-9, 9
-mkdir: cannot create directory ‘output/letters-depth-6’: File exists
-9, 9
 
 # different seedURl
 testURL=http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/D.html
@@ -190,10 +179,7 @@ do
     ./crawler $testURL $out/$dir $depth
     ((depth++))
 done
-mkdir: cannot create directory ‘output/wikipedia-depth-0’: File exists
-mkdir: cannot create directory ‘output/wikipedia-depth-1’: File exists
-mkdir: cannot create directory ‘output/wikipedia-depth-2’: File exists
-testing.sh: line 77: 2188965 Segmentation fault      (core dumped) ./crawler $testURL $out/$dir $depth
+testing.sh: line 81: 2625963 Segmentation fault      (core dumped) ./crawler $testURL $out/$dir $depth
 
 # cleanup
 make clean

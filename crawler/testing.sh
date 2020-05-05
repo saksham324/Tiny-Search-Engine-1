@@ -17,6 +17,12 @@ testURL=http://old-www.cs.dartmouth.edu/~cs50/index.html
 externalURL=www.google.com
 out=output  # name of directory
 
+# remove output directory if it exists
+if [ -d $out ]
+then
+    rm -rf $out/
+fi
+
 # make the directory and test subdirectory
 mkdir $out
 mkdir $out/test
@@ -38,6 +44,9 @@ mkdir $out/test
 
 # non existent page
 ./crawler $testURL/index $out/test 2 
+
+# negative maxDepth
+./crawler $testURL $out -7
 
 # cross-linked webpage - letters
 testURL=http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html

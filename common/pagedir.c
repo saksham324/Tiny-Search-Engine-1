@@ -17,6 +17,7 @@ bool isValidDirectory(char * dirname)
     char filename[11 + strlen(dirname)];
     strcpy(filename, dirname);
     char *ext;
+    
     // user can give directory as either dirname/ or dirname
     if (dirname[strlen(dirname) - 1] != '/'){
         ext = "/.crawler";
@@ -32,7 +33,7 @@ bool isValidDirectory(char * dirname)
 
     // if a valid fp is returned, the directory is valid.
     if (fp == NULL){
-        fprintf(stderr, "Provide a valid Directory.\n");
+        fprintf(stderr, "Provide an existing pageDirectory.\n");
         return false;
     }
     else {

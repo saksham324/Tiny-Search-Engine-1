@@ -19,25 +19,26 @@ int main(const int argc, char *argv[])
 {
     // command-line arguments
     int maxDepth;
-    char *seedURL = assertp(count_malloc((strlen(argv[1]) + 1)*sizeof(char)), "seedURL");
+    char *seedURL;
     char pageDirectory[100];
     int id = 1;
 
     // too few arguments given
     if (argc != 4) {
-        fprintf(stderr, "Invalid number of arguments.\n");
+        fprintf(stderr, "usage: ./crawler seedURL pageDirectory maxDepth\n");
         return 1;
     }
 
     // validating maxDepth
     maxDepth = atoi(argv[3]);
     if (maxDepth < 0){
-        fprintf(stderr, "Invalid maxDepth.\n");
+        fprintf(stderr, "maxDepth has to be > 0.\n");
         return 1;
     }
 
     // validating seedURL
     if (IsInternalURL(argv[1])) {
+        seedURL = assertp(count_malloc((strlen(argv[1]) + 1)*sizeof(char)), "seedURL");
         strcpy(seedURL, argv[1]);
     }
     else {
@@ -104,19 +105,27 @@ bool pageFetcher(webpage_t *page){
 void pageScanner(webpage_t * page, hashtable_t *ht, bag_t *bag)
 {
     int pos = 0;
-    char *result = webpage_getNextURL(page, &pos);
+    char *result;
 
     // while there are more embedded URLS
-    while (result != NULL) {
+    while ((result = webpage_getNextURL(page, &pos)) != NULL) {
 
+        // check to see if it's internal
         if (IsInternalURL(result)){
             
             if(hashtable_insert(ht, result, "")){
                 webpage_t *new = webpage_new(result, webpage_getDepth(page) + 1, NULL);
                 bag_insert(bag, new);
             }
+            else {
+                // free the URL if it wasn't inserted in the hashtable
+                free(result);
+            }
         }
-        result = webpage_getNextURL(page, &pos);
+        else {
+            // free the URL if it's not internal
+            free(result);
+        }
     }
 }
 
