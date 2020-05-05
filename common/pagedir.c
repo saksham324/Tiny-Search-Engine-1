@@ -67,7 +67,7 @@ bool pageSaver(webpage_t* page, char * dirname, const int id)
         fprintf(stderr, "pageSaver: Error saving the webpage.\n");
         status = false;
     }
-    // if the file was successfully created, start writing into it.
+    // if the file was successfully created, start writing into it
     else {
         fprintf(fp, webpage_getURL(page));
         fprintf(fp, "\n");

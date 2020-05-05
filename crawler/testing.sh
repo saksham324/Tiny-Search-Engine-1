@@ -80,7 +80,7 @@ do
     ((depth++))
 done
 
-# cleanup.
+# cleanup
 make clean
 cd -
 make clean
