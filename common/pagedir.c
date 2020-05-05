@@ -17,7 +17,7 @@ bool isValidDirectory(char * dirname)
     char filename[11 + strlen(dirname)];
     strcpy(filename, dirname);
     char *ext;
-    
+
     // user can give directory as either dirname/ or dirname
     if (dirname[strlen(dirname) - 1] != '/'){
         ext = "/.crawler";
@@ -67,7 +67,7 @@ bool pageSaver(webpage_t* page, char * dirname, const int id)
         fprintf(stderr, "pageSaver: Error saving the webpage.\n");
         status = false;
     }
-    // if the file was successfully created, start writing into it
+    // if the file was successfully created, start writing into it.
     else {
         fprintf(fp, webpage_getURL(page));
         fprintf(fp, "\n");

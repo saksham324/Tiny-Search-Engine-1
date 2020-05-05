@@ -45,8 +45,8 @@ int main(const int argc, char *argv[])
         fprintf(stderr, "Invalid seedURL.\n");
         return 1;
     }
-
-    // validating directory
+  
+    // validating directory.
     strcpy(pageDirectory, argv[2]);
     if (! isValidDirectory(argv[2])) {
         return 1;

@@ -196,3 +196,4 @@ rm -f common.a *~ *.o
 make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
 cd -
 /net/ifs-users/markgitau/cs50/labs/tse-markgitau/crawler
+
