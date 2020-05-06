@@ -36,7 +36,7 @@ int main(const int argc, char *argv[])
         return 1;
     }
 
-    // validating seedURL
+    // validating seedURL.
     if (IsInternalURL(argv[1])) {
         seedURL = assertp(count_malloc((strlen(argv[1]) + 1)*sizeof(char)), "seedURL");
         strcpy(seedURL, argv[1]);
