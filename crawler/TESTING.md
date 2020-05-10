@@ -1,8 +1,8 @@
 # TESTING for crawler.c
 
-## Mark Gitau, January 2020
+## Mark Gitau, April 2020
 
-### Approach
+### Test Results
 
 All the testing is done in `testing.sh` which is called by typing `make test` on the command line while in the *crawler* directory. The test results can be found in `testing.out`.
 

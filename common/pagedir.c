@@ -4,6 +4,7 @@
 #include <string.h>
 #include "webpage.h"
 #include "memory.h"
+#include "file.h"
 
 // function prototypes
 bool isValidDirectory(char * dirname);
@@ -78,3 +79,21 @@ bool pageSaver(webpage_t* page, char * dirname, const int id)
     }
     return status;   
 }
+
+// reads a single webpage file produced by crawler and loads it into a webpage str
+webpage_t *loadPage(char *pathname){
+    FILE *fp = fopen(pathname, "r");
+    if (fp != NULL){
+        char *url = freadlinep(fp);
+        char *d = freadlinep(fp);
+        int depth = atoi(d);
+        free(d);
+        char *html = freadfilep(fp);
+        fclose(fp);
+
+        webpage_t *page = webpage_new(url, depth, html);
+        return page;
+    }
+    return NULL;
+}
+

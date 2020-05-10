@@ -1,0 +1,24 @@
+bash -v testing.sh
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+rm -f core
+rm -f common.a *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o pagedir.o pagedir.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o index.o index.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o word.o word.c
+ar cr common.a pagedir.o index.o word.o ../libcs50/libcs50-given.a
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+/net/ifs-users/markgitau/cs50/labs/tse-markgitau/indexer
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/indexer'
+rm -f core *core.*
+rm -f indexer indextest *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/indexer'
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/indexer'
+gcc -Wall -pedantic -std=c11 -ggdb -I ../common -I ../libcs50   -c -o indexer.o indexer.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../common -I ../libcs50 indexer.o ../common/common.a ../libcs50/libcs50-given.a  -o indexer
+gcc -Wall -pedantic -std=c11 -ggdb -I ../common -I ../libcs50   -c -o indextest.o indextest.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../common -I ../libcs50 indextest.o ../common/common.a ../libcs50/libcs50-given.a  -o indextest
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/indexer'
+no differences
+no differences

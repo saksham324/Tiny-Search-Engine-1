@@ -20,8 +20,11 @@ bool isValidDirectory(char * dirname);
 
 // saves a webpage
 bool pageSaver(webpage_t* page, const char * dirname, const int id);
+
+// loads a file creted by crawler into a webpage struct
+webpage_t *loadPage(char *pathname);
 ```
 
 ### Assumptions
 
-No assumptions.
+No assumptions beyond what is stated in the specifications.
