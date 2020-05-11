@@ -24,7 +24,7 @@ where:
 
 output:
 
-a file named `indexFilename` that contains contents whose format is specified in `REQUIREMENTS.md`.
+a file named `indexFilename` that contains contents whose format is specified in `REQUIREMENTS.md`
 
 #### index tester
 

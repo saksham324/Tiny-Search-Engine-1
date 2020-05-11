@@ -73,7 +73,7 @@ int main(const int argc, char *argv[])
     return 0;
 }
 
-// deletes all the counters
+//  deletes all the counters
 void delete(void* item)
 {
     counters_t *ctrs = (counters_t *) item;

@@ -76,5 +76,11 @@ then
     rm -f $index2 $test2
 fi
 
+#cleanup
+make clean
+cd -
+make clean
+cd -
+
 
 

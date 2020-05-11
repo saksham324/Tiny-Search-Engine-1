@@ -34,7 +34,7 @@ int main(const int argc, char *argv[])
 
         FILE *fp = fopen(pageDirectory, "r");
         if (fp){
-            // .crawler exists
+            //  .crawler exists
             fclose(fp);
         }
         else {

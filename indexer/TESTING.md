@@ -1,4 +1,4 @@
-# TESTING for indexer
+# TESTING for Indexer
 
 ## Mark Gitau, April 2020
 
