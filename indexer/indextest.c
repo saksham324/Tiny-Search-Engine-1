@@ -10,7 +10,6 @@
 
 // deletes the counters
 void delete(void* item);
-void itemprint (FILE *fp, const char *key, void *item);
 
 int main(const int argc, char *argv[])
 {

@@ -24,7 +24,7 @@ valgrind: all
 TAGS:  Makefile */Makefile */*.c */*.h */*.md */*.sh
 	etags $^
 
-############## clean  ##########
+############## clean  #########
 clean:
 	rm -f *~
 	rm -f TAGS
