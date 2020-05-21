@@ -24,3 +24,6 @@ clean:
 	rm -f core *core.*
 	rm -f $(PROG) *~ *.o
 
+valgrind:
+	valgrind ./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html output/letters-depth-6 6
+
