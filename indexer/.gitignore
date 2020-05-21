@@ -1,5 +1,6 @@
 *.o
 indexer
 indextest
-core
+*core*
 .nfs*
+*depth*

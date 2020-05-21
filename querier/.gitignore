@@ -1,0 +1,5 @@
+*.o
+querier
+fuzzquery
+*core*
+.nfs*

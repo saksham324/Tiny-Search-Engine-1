@@ -1,0 +1,123 @@
+bash -v testing.sh
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+rm -f core
+rm -f common.a *~ *.o
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o pagedir.o pagedir.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o index.o index.c
+gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o word.o word.c
+ar cr common.a pagedir.o index.o word.o ../libcs50/libcs50-given.a
+make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+/net/ifs-users/markgitau/cs50/labs/tse-markgitau/querier
+Query: intellectual and engineer 
+Matches 0 documents (ranked)
+-----------------------------------------------------------------------------------------------------------------------
+Query: naturally or adapting livre or electric rocker 
+Matches 1 documents (ranked)
+score  1 doc 41: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/food-and-drink_33/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: existentialist parties or objects 
+Matches 10 documents (ranked)
+score  4 doc 19: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sharp-objects_997/index.html
+score  1 doc  1: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/index.html
+score  1 doc 13: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-black-maria_991/index.html
+score  1 doc 14: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-boys-in-the-boat-nine-americans-and-their-epic-quest-for-gold-at-the-1936-berlin-olympics_992/index.html
+score  1 doc 15: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html
+score  1 doc 16: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-dirty-little-secrets-of-getting-your-dream-job_994/index.html
+score  1 doc 17: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-requiem-red_995/index.html
+score  1 doc 18: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sapiens-a-brief-history-of-humankind_996/index.html
+score  1 doc 71: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/mystery_3/index.html
+score  1 doc 73: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books_1/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: beowulf or classify star both and quot or elsewhere 
+Matches 3 documents (ranked)
+score  1 doc 68: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/classics_6/index.html
+score  1 doc  2: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/page-2.html
+score  1 doc 61: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/nonfiction_13/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: arrows were passion soubresauts or friend 
+Matches 2 documents (ranked)
+score  2 doc  3: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/its-only-the-himalayas_981/index.html
+score  2 doc 21: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/tipping-the-velvet_999/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: office 
+Matches 2 documents (ranked)
+score  2 doc 21: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/tipping-the-velvet_999/index.html
+score  1 doc 64: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/fiction_10/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: down garden or charting 
+Matches 1 documents (ranked)
+score  1 doc 18: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sapiens-a-brief-history-of-humankind_996/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: experienced 
+Matches 1 documents (ranked)
+score  1 doc  3: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/its-only-the-himalayas_981/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: vol or endure or corn and lobbyists and halls 
+Matches 4 documents (ranked)
+score  7 doc 69: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/sequential-art_5/index.html
+score  1 doc 60: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/music_14/index.html
+score  1 doc 50: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/paranormal_24/index.html
+score  1 doc 12: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/starving-hearts-triangular-trade-trilogy-1_990/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: utilities take sexually 
+Matches 0 documents (ranked)
+-----------------------------------------------------------------------------------------------------------------------
+Query: days and spoken manages or bossypants aristotle 
+Matches 0 documents (ranked)
+-----------------------------------------------------------------------------------------------------------------------
+Query: delegates and road law and osage prevalently or impersonator 
+Matches 1 documents (ranked)
+score  2 doc 21: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/tipping-the-velvet_999/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: carvestrene or comment way hinges true or whether 
+Matches 1 documents (ranked)
+score  1 doc  8: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/rip-it-up-and-start-again_986/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: pursue or effort mad or bane or surely 
+Matches 3 documents (ranked)
+score  1 doc 18: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sapiens-a-brief-history-of-humankind_996/index.html
+score  1 doc 55: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/fantasy_19/index.html
+score  1 doc 52: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/science_22/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: homo 
+Matches 1 documents (ranked)
+score  1 doc 18: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sapiens-a-brief-history-of-humankind_996/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: why or forgotten 
+Matches 4 documents (ranked)
+score  2 doc 39: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/business_35/index.html
+score  2 doc  5: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/mesaerion-the-best-science-fiction-stories-1800-1849_983/index.html
+score  1 doc 59: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/default_15/index.html
+score  1 doc 26: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/politics_48/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: sides or beginners and mentored 
+Matches 1 documents (ranked)
+score  1 doc 54: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/new-adult_20/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: codename or overinstruct or sleeping and cinchonism or overload beecher 
+Matches 1 documents (ranked)
+score  1 doc 69: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/sequential-art_5/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: patient yahiya privileged capable spongin 
+Matches 0 documents (ranked)
+-----------------------------------------------------------------------------------------------------------------------
+Query: buck or reading or robust or basketball and slapstick 
+Matches 3 documents (ranked)
+score  2 doc 15: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html
+score  2 doc 14: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/the-boys-in-the-boat-nine-americans-and-their-epic-quest-for-gold-at-the-1936-berlin-olympics_992/index.html
+score  1 doc 18: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sapiens-a-brief-history-of-humankind_996/index.html
+-----------------------------------------------------------------------------------------------------------------------
+Query: newest and hope 
+Matches 0 documents (ranked)
+-----------------------------------------------------------------------------------------------------------------------
+Query: ana incumbently makes or terrain and mold 
+Matches 0 documents (ranked)
+-----------------------------------------------------------------------------------------------------------------------
+Query: truth characters or stay or interviewed ranieri face 
+Matches 3 documents (ranked)
+score  2 doc 19: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/sharp-objects_997/index.html
+score  1 doc 66: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/romance_8/index.html
+score  1 doc 61: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/nonfiction_13/index.html
+-----------------------------------------------------------------------------------------------------------------------
