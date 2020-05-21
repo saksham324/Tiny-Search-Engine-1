@@ -25,5 +25,5 @@ test:
 	bash -v testing.sh
 
 valgrind:
-	valgrind ./querier ../tse-output/toscrape-depth-1 ../indexer/toscrape-depth-1-index
+	echo review home | valgrind ./querier ../tse-output/toscrape-depth-1 ../indexer/toscrape-depth-1-index
 
