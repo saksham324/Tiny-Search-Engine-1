@@ -1,15 +1,61 @@
-bash -v testing.sh
+#!/bin/bash
+
+# testing.sh - testing the tse querier module
+
+# Compiling common
+cd ../common
+make clean
 make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
 rm -f core
 rm -f common.a *~ *.o
 make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+make
 make[1]: Entering directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
 gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o pagedir.o pagedir.c
 gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o index.o index.c
 gcc -Wall -pedantic -std=c11 -ggdb -I ../libcs50   -c -o word.o word.c
 ar cr common.a pagedir.o index.o word.o ../libcs50/libcs50-given.a
 make[1]: Leaving directory '/net/ifs-users/markgitau/cs50/labs/tse-markgitau/common'
+cd -
 /net/ifs-users/markgitau/cs50/labs/tse-markgitau/querier
+
+# Variables
+cc=./querier
+fuzz=./fuzzquery
+pagedir=../tse-output/toscrape-depth-1
+index=../indexer/toscrape-depth-1-index
+
+# wrong pageDirectory
+$cc ../crawler $index
+Invalid pageDirectory.
+
+# wrong IndexFilename
+$cc $pagedir ./crawler
+Invalid indexFilename.
+
+# wrong number of arguments
+$cc $pagedir $index ../crawler
+usage: ./querier pageDirectory indexFilename
+
+# invalid queries
+echo home_review | $cc $pagedir $index
+Error: bad character '_' in query
+
+echo and home review | $cc $pagedir $index
+Error: 'and' cannot be first.
+
+echo or home review | $cc $pagedir $index
+Error: 'or' cannot be first.
+
+echo home and or review | $cc $pagedir $index
+Error: 'and' and 'or' cannot follow each other
+
+echo home review and | $cc $pagedir $index
+Error: query cannot end in 'and'
+
+# fuzzquery
+$fuzz $index 25 0 | $cc $pagedir $index
+./fuzzquery: generating 25 queries from 2326 words
 Query: intellectual and engineer 
 Matches 0 documents (ranked)
 -----------------------------------------------------------------------------------------------------------------------

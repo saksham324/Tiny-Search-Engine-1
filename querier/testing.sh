@@ -24,6 +24,8 @@ $cc $pagedir ./crawler
 $cc $pagedir $index ../crawler
 
 # invalid queries
+echo home_review | $cc $pagedir $index
+
 echo and home review | $cc $pagedir $index
 
 echo or home review | $cc $pagedir $index
@@ -32,7 +34,6 @@ echo home and or review | $cc $pagedir $index
 
 echo home review and | $cc $pagedir $index
 
-echo home-review | $cc $pagedir $index
 
 # fuzzquery
 $fuzz $index 25 0 | $cc $pagedir $index
