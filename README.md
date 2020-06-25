@@ -1,8 +1,6 @@
 # Mark Gitau
 
-## CS50 Spring 2020, Tiny Search Engine
-
-GitHub username: markgitau
+## Tiny Search Engine
 
 To build, run `make`.
 
